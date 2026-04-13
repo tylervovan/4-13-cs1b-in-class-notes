@@ -28,6 +28,36 @@ public:
 
 	static int getCount();
 
+	// ============================================================
+	// OPERATOR OVERLOADING
+	// ============================================================
+	//
+	// What is it?
+	//   C++ knows how to use >, +, <<, == etc. with basic types
+	//   like int, double, and string. But it does NOT know what
+	//   those symbols mean for YOUR class (Book).
+	//
+	//   Operator overloading lets you DEFINE what >, +, << etc.
+	//   do when used with Book objects.
+	//
+	// How does it work?
+	//   "operator>" is just a function with a special name.
+	//   When you write:     book1 > book2
+	//   The compiler sees:  book1.operator>(book2)
+	//   It's literally calling a function named "operator>" on book1.
+	//
+	// Why do it?
+	//   Without overloading, this would be a compiler error:
+	//     if (book1 > book2)   // error: can't compare two Books
+	//   After overloading, you've taught C++ what > means for Books.
+	//
+	// Rules:
+	//   - You can only overload EXISTING operators (>, +, <<, ==, etc.)
+	//   - You CANNOT invent new operators (no ** or @@ or >>>)
+	//   - You decide what the operator does (> could compare titles,
+	//     costs, page counts — whatever makes sense for your class)
+	// ============================================================
+
 	// --- OPERATOR OVERLOADS (member functions) ---
 	// These ARE member functions because Book is on the LEFT side.
 	//   book1 > book2   -->  book1.operator>(book2)
