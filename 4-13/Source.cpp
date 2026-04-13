@@ -53,6 +53,8 @@ int main()
 	return 0; 
 }
 
+
+// this is a very bad thing to do: Dont use friend for this function
 void comparePrices(Book& book1, Book& book2)
 {
 	if (book1.cost > book2.cost)
