@@ -56,6 +56,13 @@ void Book::printBook()
 	 return count; 
 }
 
+ // --- MEMBER operator > (Book vs Book) ---
+ // This IS a member function, so it uses Book::
+ // "cost" here means this->cost (the book on the left side)
+ // book2.cost is the book on the right side
+ //
+ // Example:  book1 > book2
+ //           book1 is "this", book2 is the parameter
  bool Book::operator >(Book& book2)
  {
 	 if (cost > book2.cost)
@@ -63,31 +70,57 @@ void Book::printBook()
 		 return true;
 	 }
 	 else
-		 return false; 
+		 return false;
 
 }
 
-
-
-
+ // --- MEMBER operator > (Book vs float) ---
+ // Same idea, but comparing a book's cost to a raw number
+ //
+ // Example:  book1 > 19.99
+ //           book1 is "this", 19.99 is "price"
  bool Book::operator >(float price)
  {
 
-	 return cost > price; 
+	 return cost > price;
 
 }
 
- float Book::operator +(Book& book) 
+ // --- MEMBER operator + ---
+ // Adds the costs of two books together
+ //
+ // Example:  book1 + book2  -->  returns book1.cost + book2.cost
+ float Book::operator +(Book& book)
  {
- 
-	 return cost + book.cost; 
+
+	 return cost + book.cost;
 
  }
 
-void Book::comparePrices(Book& book1, Book& book2) {}
+// --- FRIEND function comparePrices ---
+// Notice: NO "Book::" because this is NOT a member of Book.
+// It's a free function that Book gave friend access to.
+// It can access book1.cost and book2.cost directly even though
+// cost is private.
+void comparePrices(Book& book1, Book& book2)
+{
+	if (book1.cost > book2.cost)
+		cout << book1.title << " costs more." << endl;
+	else
+		cout << book2.title << " costs more." << endl;
+}
 
+// --- FRIEND operator << ---
+// Notice: NO "Book::" — this is a free function, not a member.
+//
+// When you write:   cout << myBook
+// "stream" is cout, "book" is myBook.
+// It can access book.title and book.cost because it's a friend.
+//
+// Returns stream so you can chain:  cout << book1 << book2
 ostream& operator << (ostream& stream, Book& book) {
 
-	stream << "\nTitle is: " << book.cost << endl; 
-	stream << "\nCost is: $" << book.cost<< endl; 
+	stream << "\nTitle is: " << book.title << endl;
+	stream << "\nCost is: $" << book.cost << endl;
+	return stream;
 }
