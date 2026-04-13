@@ -61,7 +61,7 @@ void comparePrices(Book& book1, Book& book2)
 	}
 	else if (book1.cost < book2.cost)
 	{
-		cout << book1.title << " is more expensive than " << book1.title << endl; 
+		cout << book2.title << " is more expensive than " << book1.title << endl;
 	}
 	else
 	{

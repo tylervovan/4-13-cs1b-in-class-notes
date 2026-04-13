@@ -1,5 +1,9 @@
 #include "Book.h"
 
+// Static members must be defined (initialized) outside the class.
+// This gives "count" actual storage in memory and sets it to 0.
+int Book::count = 0;
+
 Book::Book()
 {
 	title = {};
@@ -97,18 +101,7 @@ void Book::printBook()
 
  }
 
-// --- FRIEND function comparePrices ---
-// Notice: NO "Book::" because this is NOT a member of Book.
-// It's a free function that Book gave friend access to.
-// It can access book1.cost and book2.cost directly even though
-// cost is private.
-void comparePrices(Book& book1, Book& book2)
-{
-	if (book1.cost > book2.cost)
-		cout << book1.title << " costs more." << endl;
-	else
-		cout << book2.title << " costs more." << endl;
-}
+// comparePrices is defined in Source.cpp (see there for the implementation)
 
 // --- FRIEND operator << ---
 // Notice: NO "Book::" — this is a free function, not a member.
