@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class Book
 {
 private:
@@ -16,15 +14,14 @@ private:
 
 public:
 	Book();
-	Book(string title, double cost);
+	Book(std::string& title, double cost);
 	~Book();
 
-	void setTitle(string title);
+	void setTitle(std::string& title);
 	void setCost(double cost);
-	string getTitle();
-	double getCost();
-
-	void printBook();
+	std::string getTitle()const;
+	double getCost()const;
+	void printBook()const;
 
 	static int getCount();
 
@@ -62,15 +59,15 @@ public:
 	// These ARE member functions because Book is on the LEFT side.
 	//   book1 > book2   -->  book1.operator>(book2)
 	//   book1 is "this", book2 is the parameter
-	bool operator >(Book& book);
+	bool operator >(const Book& book)const;
 
 	//   book1 > 19.99   -->  book1.operator>(19.99)
 	//   book1 is "this", 19.99 is the parameter
-	bool operator >(float price);
+	bool operator >(float price)const;
 
 	//   book1 + book2   -->  book1.operator+(book2)
 	//   Returns the combined cost of both books
-	float operator +(Book& book);
+	float operator +(const Book& book)const;
 
 	// --- FRIEND FUNCTIONS (NOT member functions) ---
 	//
@@ -97,9 +94,9 @@ public:
 	//    book1 > book2  -->  Book is on the LEFT, so it can be a member
 	//    cout << book1  -->  ostream is on the LEFT, so it CANNOT be a member
 
-	friend void comparePrices(Book& book1, Book& book2);
+	friend void comparePrices(const Book& book1, const Book& book2)const;
 
-	friend ostream& operator << (ostream& stream, Book& book);
+	friend std::ostream& operator << (const std::ostream& stream, const Book& book);
 
 
 };
