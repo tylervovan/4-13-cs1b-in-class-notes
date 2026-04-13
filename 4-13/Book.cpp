@@ -11,11 +11,11 @@ Book::Book()
 	count++;
 }
 
-Book::Book(string title, double cost)
+Book::Book(const string& title, double cost)
 {
-	this->title = title; 
-	this->cost = cost; 
-	count++; 
+	this->title = title;
+	this->cost = cost;
+	count++;
 
 
 }
@@ -25,9 +25,9 @@ Book::~Book()
 
 }
 
-void Book::setTitle(string title)
+void Book::setTitle(const string& title)
 {
-	this->title = title; 
+	this->title = title;
 
 }
 void Book::setCost(double cost)
@@ -35,21 +35,21 @@ void Book::setCost(double cost)
 	this->cost = cost; 
 
 }
-string Book::getTitle()
+string Book::getTitle() const
 {
-	return title; 
+	return title;
 
 }
-double Book::getCost()
+double Book::getCost() const
 {
 
 	return cost;
 }
 
-void Book::printBook()
+void Book::printBook() const
 {
-	cout << "Title: " << title << endl; 
-	cout << "Cost:  " << cost << endl; 
+	cout << "Title: " << title << endl;
+	cout << "Cost:  " << cost << endl;
 
 
 }
@@ -67,7 +67,7 @@ void Book::printBook()
  //
  // Example:  book1 > book2
  //           book1 is "this", book2 is the parameter
- bool Book::operator >(Book& book2)
+ bool Book::operator >(const Book& book2) const
  {
 	 if (cost > book2.cost)
 	 {
@@ -83,7 +83,7 @@ void Book::printBook()
  //
  // Example:  book1 > 19.99
  //           book1 is "this", 19.99 is "price"
- bool Book::operator >(float price)
+ bool Book::operator >(float price) const
  {
 
 	 return cost > price;
@@ -94,7 +94,7 @@ void Book::printBook()
  // Adds the costs of two books together
  //
  // Example:  book1 + book2  -->  returns book1.cost + book2.cost
- float Book::operator +(Book& book)
+ float Book::operator +(const Book& book) const
  {
 
 	 return cost + book.cost;
@@ -111,7 +111,7 @@ void Book::printBook()
 // It can access book.title and book.cost because it's a friend.
 //
 // Returns stream so you can chain:  cout << book1 << book2
-ostream& operator << (ostream& stream, Book& book) {
+ostream& operator << (ostream& stream, const Book& book) {
 
 	stream << "\nTitle is: " << book.title << endl;
 	stream << "\nCost is: $" << book.cost << endl;

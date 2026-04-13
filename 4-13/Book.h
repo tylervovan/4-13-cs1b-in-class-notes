@@ -4,20 +4,22 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class Book
 {
 private:
 	// Only member functions (and friends) can access these
-	string title;
+	std::string title;
 	double cost;
 	static int count;
 
 public:
 	Book();
-	Book(std::string& title, double cost);
+	Book(const std::string& title, double cost);
 	~Book();
 
-	void setTitle(std::string& title);
+	void setTitle(const std::string& title);
 	void setCost(double cost);
 	std::string getTitle()const;
 	double getCost()const;
@@ -94,9 +96,9 @@ public:
 	//    book1 > book2  -->  Book is on the LEFT, so it can be a member
 	//    cout << book1  -->  ostream is on the LEFT, so it CANNOT be a member
 
-	friend void comparePrices(const Book& book1, const Book& book2)const;
+	friend void comparePrices(const Book& book1, const Book& book2);
 
-	friend std::ostream& operator << (const std::ostream& stream, const Book& book);
+	friend std::ostream& operator << (std::ostream& stream, const Book& book);
 
 
 };

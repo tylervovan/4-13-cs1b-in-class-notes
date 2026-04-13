@@ -55,7 +55,7 @@ int main()
 
 
 // this is a very bad thing to do: Dont use friend for this function
-void comparePrices(Book& book1, Book& book2)
+void comparePrices(const Book& book1, const Book& book2)
 {
 	if (book1.cost > book2.cost)
 	{
