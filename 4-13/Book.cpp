@@ -84,6 +84,10 @@ void Book::printBook()
 
  }
 
- friend void Book::comparePrices(Book& book1, Book& book2) {}
+void Book::comparePrices(Book& book1, Book& book2) {}
 
- friend ostream& Book::operator << (ostream& stream, Book& book) {}
+ostream& operator << (ostream& stream, Book& book) {
+
+	stream << "\nTitle is: " << book.cost << endl; 
+	stream << "\nCost is: $" << book.cost<< endl; 
+}

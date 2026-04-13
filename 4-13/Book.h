@@ -36,6 +36,10 @@ public:
 	friend void comparePrices(Book& book1, Book& book2); 
 
 	friend ostream& operator << (ostream& stream, Book& book); 
+	// what does friend do? 
+	// friend is a keyword that grants a non-member function (or anotehr class) access to the private and protected members of the class its declared in. 
+
+	// this needs friend because the << operator for ostream cannot be a reuglar member function of Book. 
 
 
 };
